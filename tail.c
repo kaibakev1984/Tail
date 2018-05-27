@@ -21,12 +21,11 @@ void mostrar_cadenas(void *dato){
 
 bool es_numero(const char *cad){
 	size_t i = 0;
-	bool ok = true;
 	while(cad[i] != '\0'){
-		ok &= isdigit(cad[i]);
+		if(!isdigit(cad[i])) return false;
 		i++;
 	}
-	return ok;
+	return true;
 }
 
 int main(int argc, char const *argv[])
