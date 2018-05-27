@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 #include "cola.h"
 
 char *cadena_crear(char *linea, size_t capacidad){
@@ -18,6 +19,16 @@ void mostrar_cadenas(void *dato){
 	free(dato);
 }
 
+bool es_numero(const char *cad){
+	size_t i = 0;
+	bool ok = true;
+	while(cad[i] != '\0'){
+		ok &= isdigit(cad[i]);
+		i++;
+	}
+	return ok;
+}
+
 int main(int argc, char const *argv[])
 {
 	if(argc != 2){
@@ -25,7 +36,7 @@ int main(int argc, char const *argv[])
 		return 1;
 	}
 
-	if(isdigit(argv[1])){
+	if(!es_numero(argv[1])){
 		fprintf(stderr, "%s\n", "Tipo de parametro incorrecto");
 		return 1;
 	}
